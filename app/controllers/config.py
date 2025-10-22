@@ -3,7 +3,9 @@ import os
 
 load_dotenv()
 
-def _normalize_database_url(url: str | None) -> str | None:
+from typing import Optional
+
+def _normalize_database_url(url: Optional[str]) -> Optional[str]:
     if not url:
         return url
     # Render suele dar postgres://... ; SQLAlchemy espera postgresql+psycopg://...
