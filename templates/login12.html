@@ -1,0 +1,14 @@
+<!-- login.html -->
+<form class="login-form" id="loginForm" method="POST" action="{{ url_for('auth.login_page') }}">
+    <div class="input-group">
+        <input type="email" id="email" name="email" required placeholder="Correo electrónico">
+        <label for="email">Correo</label>
+    </div>
+
+    <div class="input-group">
+        <input type="password" id="password" name="password" required placeholder="Contraseña">
+        <label for="password">Contraseña</label>
+    </div>
+
+    <button type="submit" class="submit-btn">Iniciar sesión</button>
+</form>
