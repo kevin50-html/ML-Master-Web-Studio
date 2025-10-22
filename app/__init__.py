@@ -3,6 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 import os
+from dotenv import load_dotenv
+
+# Cargar las variables de entorno desde el archivo .env
+load_dotenv()
 
 # Inicialización de las extensiones
 db = SQLAlchemy()
@@ -16,9 +20,9 @@ def create_app():
         template_folder=os.path.join(os.path.abspath(os.path.dirname(__file__)), '../templates')
     )
 
-    # Configuración de la base de datos y secret key
-    app.config['SECRET_KEY'] = 'tu_clave_secreta'  # Cambia esto por una clave más segura
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://mlmasterwebstudio:#$fsd5sd7fd6637jhgD@localhost:3306/mlmasterwebstudio?charset=utf8mb4'
+    # Configuración de la aplicación
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'tu_clave_secreta')  # Utiliza la variable de entorno
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'mysql+pymysql://mlmasterwebstudio:#$fsd5sd7fd6637jhgD@localhost:3306/mlmasterwebstudio?charset=utf8mb4')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Inicializar las extensiones
@@ -39,6 +43,5 @@ def create_app():
     def load_user(user_id):
         from app.models.user import User
         return User.query.get(int(user_id))
-
 
     return app
