@@ -5,7 +5,7 @@ from flask_login import LoginManager
 import os
 from dotenv import load_dotenv
 
-# Cargar variables de entorno
+# Cargar las variables de entorno desde el archivo .env
 load_dotenv()
 
 # Inicialización de las extensiones
@@ -20,9 +20,9 @@ def create_app():
         template_folder=os.path.join(os.path.abspath(os.path.dirname(__file__)), '../templates')
     )
 
-    # Configurar la base de datos y la clave secreta
-    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'mi_clave_secreta')
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'mysql+pymysql://usuario:contraseña@localhost:3306/base_de_datos')
+    # Configuración de la aplicación
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'tu_clave_secreta')  # Utiliza la variable de entorno
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'mysql+pymysql://mlmasterwebstudio:#$fsd5sd7fd6637jhgD@localhost:3306/mlmasterwebstudio?charset=utf8mb4')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Inicializar las extensiones
@@ -30,11 +30,11 @@ def create_app():
     bcrypt.init_app(app)
     login_manager.init_app(app)
 
-    # Registrar el Blueprint para autenticación
+    # Ruta para el login
     from app.controllers.auth_controller import auth_bp
     app.register_blueprint(auth_bp, url_prefix='/auth')
 
-    # Registrar el Blueprint para las rutas principales
+    # Ruta para la página principal (si la tienes)
     from app.controllers.main_controller import main_controller
     app.register_blueprint(main_controller)
 
