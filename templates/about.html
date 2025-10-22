@@ -80,7 +80,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light"> 
                     <a href="{{ url_for('main.index') }}" class="navbar-brand p-0">
-                        <img src="img/Logo.png" alt="Master Web Studio" style="height:45px;">
+                        <img src="{{ url_for('static', filename='img/Logo.png') }}" alt="Master Web Studio" style="height:45px;">
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="fa fa-bars"></span>
@@ -184,7 +184,7 @@
                             <div class="row g-4 justify-content-center">
                                 <div class="col-12">
                                     <div class="rounded bg-light">
-                                        <img src="img/about-1.png" class="img-fluid rounded w-100" alt="">
+                                        <img src="{{ url_for('static', filename='img/about-1.png') }}" class="img-fluid rounded w-100" alt="">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -342,7 +342,7 @@
                         </div>
                     </div>
                     <div class="col-xl-6 wow fadeInRight" data-wow-delay="0.4s">
-                        <img src="img/carousel-2.png" class="img-fluid w-100" alt="">
+                        <img src="{{ url_for('static', filename='img/carousel-2.png') }}" class="img-fluid w-100" alt="">   
                     </div>
                 </div>
             </div>
@@ -363,7 +363,7 @@
                     <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
                         <div class="team-item">
                             <div class="team-img">
-                                <img src="img/team-1.jpg" class="img-fluid rounded-top w-100" alt="">
+                                <img src="{{ url_for('static', filename='img/team-1.jpg') }}" class="img-fluid rounded-top w-100" alt="">
                                 <div class="team-icon">
                                     <a class="btn btn-primary btn-sm-square rounded-pill mb-2" href=""><i class="fab fa-facebook-f"></i></a>
                                     <a class="btn btn-primary btn-sm-square rounded-pill mb-2" href=""><i class="fab fa-twitter"></i></a>
@@ -380,7 +380,7 @@
                     <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
                         <div class="team-item">
                             <div class="team-img">
-                                <img src="img/team-2.jpg" class="img-fluid rounded-top w-100" alt="">
+                                <img src="{{ url_for('static', filename='img/team-2.jpg') }}" class="img-fluid rounded-top w-100" alt="">
                                 <div class="team-icon">
                                     <a class="btn btn-primary btn-sm-square rounded-pill mb-2" href=""><i class="fab fa-facebook-f"></i></a>
                                     <a class="btn btn-primary btn-sm-square rounded-pill mb-2" href=""><i class="fab fa-twitter"></i></a>
@@ -397,7 +397,7 @@
                     <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.6s">
                         <div class="team-item">
                             <div class="team-img">
-                                <img src="img/team-3.jpg" class="img-fluid rounded-top w-100" alt="">
+                                <img src="{{ url_for('static', filename='img/team-3.jpg') }}" class="img-fluid rounded-top w-100" alt="">
                                 <div class="team-icon">
                                     <a class="btn btn-primary btn-sm-square rounded-pill mb-2" href=""><i class="fab fa-facebook-f"></i></a>
                                     <a class="btn btn-primary btn-sm-square rounded-pill mb-2" href=""><i class="fab fa-twitter"></i></a>
@@ -414,7 +414,7 @@
                     <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.8s">
                         <div class="team-item">
                             <div class="team-img">
-                                <img src="img/team-4.jpg" class="img-fluid rounded-top w-100" alt="">
+                                <img src="{{ url_for('static', filename='img/team-4.jpg') }}" class="img-fluid rounded-top w-100" alt="">
                                 <div class="team-icon">
                                     <a class="btn btn-primary btn-sm-square rounded-pill mb-2" href=""><i class="fab fa-facebook-f"></i></a>
                                     <a class="btn btn-primary btn-sm-square rounded-pill mb-2" href=""><i class="fab fa-twitter"></i></a>
@@ -489,7 +489,7 @@
                                            </div>
                                             <div class="col-4">
                                                 <div class="footer-instagram rounded">
-                                                    <img src="img/instagram-footer-3.jpg" class="img-fluid w-100" alt="">
+                                                    <img src="{{ url_for('static', filename='img/instagram-footer-3.jpg') }}" class="img-fluid w-100" alt="">
                                                     <div class="footer-search-icon">
                                                         <a href="img/instagram-footer-3.jpg" data-lightbox="footerInstagram-3" class="my-auto"><i class="fas fa-link text-white"></i></a>
                                                     </div>
@@ -497,7 +497,7 @@
                                            </div>
                                             <div class="col-4">
                                                 <div class="footer-instagram rounded">
-                                                    <img src="img/instagram-footer-4.jpg" class="img-fluid w-100" alt="">
+                                                    <img src="{{ url_for('static', filename='img/instagram-footer-4.jpg') }}" class="img-fluid w-100" alt="">
                                                     <div class="footer-search-icon">
                                                         <a href="img/instagram-footer-4.jpg" data-lightbox="footerInstagram-4" class="my-auto"><i class="fas fa-link text-white"></i></a>
                                                     </div>
@@ -505,7 +505,7 @@
                                            </div>
                                             <div class="col-4">
                                                 <div class="footer-instagram rounded">
-                                                    <img src="img/instagram-footer-5.jpg" class="img-fluid w-100" alt="">
+                                                    <img src="{{ url_for('static', filename='img/instagram-footer-5.jpg') }}" class="img-fluid w-100" alt="">
                                                     <div class="footer-search-icon">
                                                         <a href="img/instagram-footer-5.jpg" data-lightbox="footerInstagram-5" class="my-auto"><i class="fas fa-link text-white"></i></a>
                                                     </div>
@@ -513,7 +513,7 @@
                                            </div>
                                            <div class="col-4">
                                                 <div class="footer-instagram rounded">
-                                                    <img src="img/instagram-footer-6.jpg" class="img-fluid w-100" alt="">
+                                                    <img src="{{ url_for('static', filename='img/instagram-footer-6.jpg') }}" class="img-fluid w-100" alt="">
                                                     <div class="footer-search-icon">
                                                         <a href="img/instagram-footer-6.jpg" data-lightbox="footerInstagram-6" class="my-auto"><i class="fas fa-link text-white"></i></a>
                                                     </div>
