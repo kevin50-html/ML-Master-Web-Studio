@@ -117,7 +117,7 @@
     transform: rotateX(0deg);
     visibility: visible;
     background: var(--bs-light);
-    padding-top: 10px;
+    padding-top: 5px;
     border: 0;
     transition: .5s;
     opacity: 1;
