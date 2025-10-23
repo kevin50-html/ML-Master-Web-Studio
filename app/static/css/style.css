@@ -104,7 +104,7 @@
     font-family: "Font Awesome 5 Free";
     font-weight: 600;
     vertical-align: middle;
-    margin-left: 4px;
+    margin-left: 8px;
     color: var(--bs-primary);
 }
 
@@ -117,7 +117,7 @@
     transform: rotateX(0deg);
     visibility: visible;
     background: var(--bs-light);
-    padding-top: 10px;
+    padding-top: 5px;
     border: 0;
     transition: .5s;
     opacity: 1;
