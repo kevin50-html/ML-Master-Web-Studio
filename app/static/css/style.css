@@ -1434,3 +1434,56 @@ li:hover{
   display: block;
   cursor: pointer;
 }
+
+
+/* === Header compacto (overrides) === */
+/* Topbar más delgado */
+.topbar {
+  padding-top: .25rem !important;
+  padding-bottom: .25rem !important;
+  font-size: .92rem;
+}
+
+/* Quita relleno vertical heredado en el contenedor del nav */
+.nav-bar {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Navbar más compacto en desktop */
+.navbar {
+  padding: 8px 0 !important;            /* antes: 20px 0 */
+}
+
+/* “Píldora” central con menos aire */
+.navbar .navbar-nav {
+  padding: 4px 8px !important;          /* reduce alto del fondo gris claro */
+}
+
+/* Cada item con menos padding */
+.navbar .navbar-nav .nav-item {
+  padding: 8px 12px !important;         /* antes: 15px */
+}
+
+/* Enlaces un poco más pequeños para que todo respire mejor */
+.navbar .navbar-nav .nav-item .nav-link {
+  font-size: .95rem;
+}
+
+/* Logo más bajo para que la barra no crezca por su altura */
+.nav-bar .navbar-brand img {
+  max-height: 36px !important;          /* antes 45–60px */
+}
+
+/* Bloque “llámanos” pegado al menú, sin abrir espacio extra */
+.d-none.d-xl-flex.flex-shrink-0.ps-4 {
+  padding-left: 12px !important;
+}
+
+/* Menos salto del dropdown al mostrarse (estético) */
+@media (min-width: 992px) {
+  .navbar .nav-item .dropdown-menu {
+    margin-top: 10px !important;        /* antes ~20px */
+  }
+}
+/* === Header compacto FIN === */
