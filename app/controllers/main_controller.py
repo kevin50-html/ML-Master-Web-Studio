@@ -27,6 +27,10 @@ def blog():
 def team():
     return render_template('team.html')
 
+@main_controller.route('/testimonial')
+def testimonial():
+    return render_template('testimonial.html')
+
 @main_controller.route('/faq')
 def faq():
     return render_template('FAQ.html')
