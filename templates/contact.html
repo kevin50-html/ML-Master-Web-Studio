@@ -44,62 +44,62 @@
         <div class="container-fluid contact bg-light py-5">
             <div class="container py-5">
                 <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                    <h4 class="text-primary">Contact Us</h4>
-                    <h1 class="display-4 mb-4">If you have any comments please apply now</h1>
+                    <h4 class="text-primary">Contactanos</h4>
+                    <h1 class="display-4 mb-4">Si tienes algún comentario, envíalo ahora.</h1>
                 </div>
                 <div class="row g-5">
                     <div class="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
                         <div class="contact-img d-flex justify-content-center" >
                             <div class="contact-img-inner">
-                                <img src="img/contact-img.png" class="img-fluid w-100"  alt="Image">
+                                <img src="{{ url_for('static', filename='img/contact-img.png') }}" class="img-fluid w-100"  alt="Image">
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-6 wow fadeInRight" data-wow-delay="0.4s">
                         <div>
-                            <h4 class="text-primary">Send Your Message</h4>
-                            <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a class="text-primary fw-bold" href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
+                            <h4 class="text-primary">¿Tienes comentarios o preguntas? ¡Estamos para ayudarte!</h4>
+                            <p class="mb-4">Si deseas más información sobre cómo participar en los retos, ser mentor, o simplemente tienes alguna duda sobre cómo funciona Revelu, no dudes en escribirnos. <a class="text-primary fw-bold" href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
                             <form>
                                 <div class="row g-3">
                                     <div class="col-lg-12 col-xl-6">
                                         <div class="form-floating">
                                             <input type="text" class="form-control border-0" id="name" placeholder="Your Name">
-                                            <label for="name">Your Name</label>
+                                            <label for="name">Nombre</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-xl-6">
                                         <div class="form-floating">
                                             <input type="email" class="form-control border-0" id="email" placeholder="Your Email">
-                                            <label for="email">Your Email</label>
+                                            <label for="email">Correo</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-xl-6">
                                         <div class="form-floating">
                                             <input type="phone" class="form-control border-0" id="phone" placeholder="Phone">
-                                            <label for="phone">Your Phone</label>
+                                            <label for="phone">Telefono</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-xl-6">
                                         <div class="form-floating">
                                             <input type="text" class="form-control border-0" id="project" placeholder="Project">
-                                            <label for="project">Your Project</label>
+                                            <label for="project">Tu Proyecto</label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating">
                                             <input type="text" class="form-control border-0" id="subject" placeholder="Subject">
-                                            <label for="subject">Subject</label>
+                                            <label for="subject">Mensaje</label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating">
                                             <textarea class="form-control border-0" placeholder="Leave a message here" id="message" style="height: 120px"></textarea>
-                                            <label for="message">Message</label>
+                                            <label for="message">Mensaje</label>
                                         </div>
 
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100 py-3">Send Message</button>
+                                        <button class="btn btn-primary w-100 py-3">Enviar</button>
                                     </div>
                                 </div>
                             </form>
@@ -114,7 +114,7 @@
                                             <i class="fas fa-map-marker-alt fa-2x"></i>
                                         </div>
                                         <div>
-                                            <h4>Address</h4>
+                                            <h4>Direccion</h4>
                                             <p class="mb-0">123 Street New York.USA</p>
                                         </div>
                                     </div>
