@@ -1463,21 +1463,3 @@ li:hover{
   margin-bottom: 2px;
 }
 /* === Header compacto FIN === */
-
-/*** Inicio - Boton Volver del Login ***/
-.back-home {
-  text-align: center;
-  margin-top: 15px;
-}
-
-.back-home .btn {
-  border-radius: 25px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.back-home .btn:hover {
-  background-color: #0d6efd;
-  color: #fff;
-}
-/*** Fin - Boton Volver del Login ***/
