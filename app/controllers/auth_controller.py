@@ -80,21 +80,20 @@ def register():
             flash('Las contraseñas no coinciden.', 'danger')
             return render_template('register.html', nombre=nombre, email=email)
 
-        # ¿Ya existe ese email?
-        existing_user = User.query.filter_by(email=email).first()
-        if existing_user:
+        if User.query.filter_by(email=email).first():
             flash('El correo electrónico ya está registrado.', 'danger')
             return render_template('register.html', nombre=nombre, email=email)
 
         try:
-            new_user = User(nombre=nombre, email=email)
-            new_user.set_password(password)
-            db.session.add(new_user)
+            user = User(nombre=nombre, email=email)
+            user.set_password(password)
+            db.session.add(user)
             db.session.commit()
             flash('Cuenta creada con éxito. Ya puedes iniciar sesión.', 'success')
             return redirect(url_for('auth.login_page'))
         except Exception as e:
             db.session.rollback()
             flash(f'Error al registrar: {e}', 'danger')
+            return render_template('register.html', nombre=nombre, email=email)
 
     return render_template('register.html')
