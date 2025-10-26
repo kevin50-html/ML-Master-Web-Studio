@@ -22,9 +22,8 @@ def _force_psycopg(url: str | None) -> str | None:
 class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY", "mi_clave_secreta")
 
-    # ⚠️ BORRA el default de MySQL — no lo uses más
-    # En su lugar, usa la URL de Render (EXTERNAL CONNECTION)
-    DATABASE_URL = os.environ.get("DATABASE_URL")
+    # URL de Render (EXTERNAL CONNECTION)
+    DATABASE_URL = os.environ.get("postgresql://mlmasterwebstudio_db_user:8fPVbhUQsvGsm7gw47ByWYjIL5vA00Zb@dpg-d3sf35q4d50c738q5nfg-a.oregon-postgres.render.com/mlmasterwebstudio_db")
 
     SQLALCHEMY_DATABASE_URI = _force_psycopg(DATABASE_URL)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
