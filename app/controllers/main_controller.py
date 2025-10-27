@@ -45,7 +45,7 @@ def error404():
     return render_template('404.html'), 404
 
 @main_controller.route('/login2')
-def feature():
+def login2():
     return render_template('login2.html')
 
 #_____________________________________________________________________________
