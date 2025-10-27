@@ -19,7 +19,7 @@
       </div>
 
       <!-- Si después harás autenticación por POST, cambia method="post" -->
-      <form class="login-form" id="loginForm" method="POST" action="{{ url_for('auth.login_page') }}" data-form-type="login"></form> 
+      <form class="login-form" id="loginForm" method="POST" action="{{ url_for('auth.login_page') }}">
           <div class="input-group">
               <input type="email" id="email" name="email" required placeholder="Correo electrónico">
               <label for="email">Correo</label>
