@@ -1,4 +1,8 @@
 # app/controllers/auth_controller.py
+
+from datetime import datetime
+
+
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_user, login_required, logout_user, current_user
 from sqlalchemy.exc import IntegrityError
@@ -22,8 +26,8 @@ def _is_safe_url(target: str) -> bool:
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login_page():
     if request.method == 'POST':
-        email = (request.form.get('email') or '').strip().lower()
-        password = request.form.get('password') or ''
+        email = request.form['email'].strip().lower()
+        password = request.form['password']
 
         user = User.query.filter_by(email=email).first()
 
@@ -62,38 +66,90 @@ def logout():
     return redirect(url_for('auth.login_page'))
 
 # -------------------------
-# Registro
+# Registro Nuevos Usuarios
 # -------------------------
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        nombre = (request.form.get('nombre') or '').strip()
-        email = (request.form.get('email') or '').strip().lower()
-        password = request.form.get('password') or ''
-        confirm_password = request.form.get('confirm_password') or ''
+        first_name = request.form.get('first_name', '').strip()
+        last_name = request.form.get('last_name', '').strip()
+        date_of_birth_raw = request.form.get('date_of_birth', '').strip()
+        identification_type = request.form.get('identification_type', '').strip()
+        identification_number = request.form.get('identification_number', '').strip()
+        nationality = request.form.get('nationality', '').strip()
+        sex = request.form.get('sex', '').strip()
+        gender = request.form.get('gender', '').strip()
+        place_of_birth = request.form.get('place_of_birth', '').strip()
+        phone = request.form.get('phone', '').strip()
+        email = request.form.get('email', '').strip().lower()
+        profession = request.form.get('profession', '').strip()
+        club = request.form.get('club', '').strip()
+        password = request.form.get('password', '')
+        confirm_password = request.form.get('confirm_password', '')
 
-        if not nombre or not email or not password:
-            flash('Todos los campos son obligatorios.', 'warning')
-            return render_template('register.html', nombre=nombre, email=email)
+        required_fields = [
+            first_name,
+            last_name,
+            date_of_birth_raw,
+            identification_type,
+            identification_number,
+            nationality,
+            sex,
+            gender,
+            place_of_birth,
+            phone,
+            email,
+            profession,
+            club,
+            password,
+            confirm_password,
+        ]
 
+        if not all(required_fields):
+            flash('Todos los campos son obligatorios. Por favor, completa el formulario.', 'danger')
+            return redirect(url_for('auth.register'))
+
+        # Verificar si las contraseñas coinciden
         if password != confirm_password:
-            flash('Las contraseñas no coinciden.', 'danger')
-            return render_template('register.html', nombre=nombre, email=email)
-
-        if User.query.filter_by(email=email).first():
-            flash('El correo electrónico ya está registrado.', 'danger')
-            return render_template('register.html', nombre=nombre, email=email)
+            flash('Las contraseñas no coinciden', 'danger')
+            return redirect(url_for('auth.register'))  # Redirigir al formulario de registro
+            
 
         try:
-            user = User(nombre=nombre, email=email)
-            user.set_password(password)
-            db.session.add(user)
-            db.session.commit()
-            flash('Cuenta creada con éxito. Ya puedes iniciar sesión.', 'success')
-            return redirect(url_for('auth.login_page'))
-        except Exception as e:
-            db.session.rollback()
-            flash(f'Error al registrar: {e}', 'danger')
-            return render_template('register.html', nombre=nombre, email=email)
+            date_of_birth = datetime.strptime(date_of_birth_raw, '%Y-%m-%d').date()
+        except ValueError:
+            flash('La fecha de nacimiento no es válida. Usa el formato AAAA-MM-DD.', 'danger')
+            return redirect(url_for('auth.register'))
 
-    return render_template('register.html')
+        # Verificar si el usuario ya existe
+        existing_user = User.query.filter_by(email=email).first()
+        if existing_user:
+            flash('El correo electrónico ya está registrado', 'danger')
+        # Hashear la contraseña
+            return redirect(url_for('auth.register'))
+
+        new_user = User(
+            first_name=first_name,
+            last_name=last_name,
+            date_of_birth=date_of_birth,
+            identification_type=identification_type,
+            identification_number=identification_number,
+            nationality=nationality,
+            sex=sex,
+            gender=gender,
+            place_of_birth=place_of_birth,
+            phone=phone,
+            email=email,
+            profession=profession,
+            club=club,
+        )
+        new_user.set_password(password)
+
+        # Crear el nuevo usuario
+        db.session.add(new_user)
+        db.session.commit()
+
+        flash('Cuenta creada con éxito', 'success')
+        return redirect(url_for('auth.login_page'))  # Redirigir al login después de crear la cuenta
+
+    return render_template('register.html')  # Mostrar el formulario de registro

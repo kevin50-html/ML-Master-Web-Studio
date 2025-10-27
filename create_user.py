@@ -1,4 +1,6 @@
-from app import create_app, db, bcrypt
+from datetime import date
+
+from app import create_app, db
 from app.models.user import User  # Importar correctamente el modelo User
 
 # Crear la aplicación
@@ -10,11 +12,23 @@ with app.app_context():
     email = 'demo@demo.com'
     password = 'Demo1234'
 
-    # Generar el hash de la contraseña
-    password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
-
-    # Crear el objeto de usuario
-    user = User(email=email, password=password_hash)
+    user = User(
+        first_name='Usuario',
+        last_name='Demostración',
+        date_of_birth=date(1990, 1, 1),
+        identification_type='Cédula de ciudadanía',
+        identification_number='1234567890',
+        nationality='Colombiana',
+        sex='Masculino',
+        gender='Masculino',
+        place_of_birth='Bogotá',
+        phone='+57 3000000000',
+        email=email,
+        profession='Ingeniero de software',
+        club='Tecnología',
+    )
+    user.set_password(password)
+    user.set_password(password)
 
     # Agregar el usuario a la base de datos
     db.session.add(user)

@@ -27,6 +27,10 @@ class ModernSaaSLoginForm {
     }
     
     setupPasswordToggle() {
+
+        if (!this.passwordToggle) {
+            return;
+        }
         this.passwordToggle.addEventListener('click', () => {
             const type = this.passwordInput.type === 'password' ? 'text' : 'password';
             this.passwordInput.type = type;
@@ -193,46 +197,78 @@ class ModernSaaSLoginForm {
 // Initialize the form when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new ModernSaaSLoginForm();
+    const form = document.getElementById('loginForm');
+    if (!form) {
+        return;
+    }
+
+    const formType = form.dataset.formType || 'login';
+
+    if (formType === 'login') {
+        new ModernSaaSLoginForm();
+    } else {
+        setupRegisterForm(form);
+    }
 });
 
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault();  // Prevenir el envío predeterminado
+    function setupRegisterForm(form) {
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const requiredFields = form.querySelectorAll('input[required], select[required], textarea[required]');
+        for (const field of requiredFields) {
+            if (!field.value || !field.value.trim()) {
+                const label = field.dataset.label || field.name;
+                flashMessage(`Por favor, completa el campo "${label}".`, 'danger');
+                field.focus();
+                return;
+            }
+        }
+    
+        const emailInput = form.querySelector('#email');
+        if (emailInput && !isValidEmail(emailInput.value)) {
+            flashMessage('Por favor, ingresa un correo electrónico válido.', 'danger');
+            emailInput.focus();
+            return;
+        }
 
-    // Obtener los valores del formulario
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
-    var confirmPassword = document.getElementById('confirm_password') ? document.getElementById('confirm_password').value : null;
+        const passwordInput = form.querySelector('#password');
+        const confirmPasswordInput = form.querySelector('#confirm_password');
+        const password = passwordInput ? passwordInput.value : '';
+        const confirmPassword = confirmPasswordInput ? confirmPasswordInput.value : '';
+   
+        if (passwordInput && password.length < 6) {
+            flashMessage('La contraseña debe tener al menos 6 caracteres.', 'danger');
+            passwordInput.focus();
+            return;
+        }
+    
+        if (confirmPasswordInput && password !== confirmPassword) {
+            flashMessage('Las contraseñas no coinciden.', 'danger');
+            confirmPasswordInput.focus();
+            return;
+        }
+        const submitBtn = form.querySelector('.submit-btn');
+        const loader = form.querySelector('.btn-loader');
 
-    // Validación básica de campos vacíos
-    if (!email || !password || (confirmPassword && !confirmPassword)) {
-        flashMessage('Por favor, llena todos los campos.', 'danger');
-        return;
-    }
+        if (submitBtn) {
+            submitBtn.disabled = true;
+        }
 
-    // Validación del formato del correo
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        flashMessage('Por favor, ingresa un correo electrónico válido.', 'danger');
-        return;
-    }
+        if (loader) {
+            loader.style.display = 'block';
+        }
 
-    // Validación de contraseñas coincidentes (solo si estamos en el formulario de registro)
-    if (confirmPassword && password !== confirmPassword) {
-        flashMessage('Las contraseñas no coinciden.', 'danger');
-        return;
-    }
+        setTimeout(() => {
+            form.submit();
+        }, 500);
+    });
+}
 
-    // Si todo está correcto, mostrar el ícono de carga y enviar el formulario
-    var submitBtn = document.querySelector('.submit-btn');
-    var loader = document.querySelector('.btn-loader');
-    submitBtn.disabled = true;  // Deshabilitar el botón de submit
-    loader.style.display = 'block';  // Mostrar el ícono de carga
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
 
-    // Enviar el formulario después de un pequeño retraso para simular el proceso
-    setTimeout(function() {
-        document.getElementById('loginForm').submit();  // Ahora enviamos el formulario
-    }, 500);  // Ajusta el tiempo según sea necesario
-});
 
 // Función para mostrar los mensajes de error
 function flashMessage(message, type) {
