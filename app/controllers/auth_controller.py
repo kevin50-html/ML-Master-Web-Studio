@@ -49,7 +49,13 @@ def login_page():
 @auth_bp.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    try:
+        return render_template('dashboard.html')
+    except Exception as e:
+        from flask import current_app
+        current_app.logger.exception("Error renderizando dashboard.html")
+        return f"<pre>Dashboard ERROR:\n{e}</pre>", 500
+
 
 # -------------------------
 # Logout
